@@ -12,11 +12,14 @@ export interface GenericServiceResponse{
   httpStatus: Number,
   serverMessage: String,
   moreDetails: GenericSuccesfullResponse | GenericErrorResponse,
-  responseBody: any
+  responseBody: any,
+  error: boolean,
+  success: boolean
 }
 
 export interface GenericServiceErrorResponse{
   httpStatus: Number,
   serverMessage: String,
   errorMessage?: String | Array<any>,
+  error: true
 }
