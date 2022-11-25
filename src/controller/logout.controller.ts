@@ -29,15 +29,15 @@ export async function logoutUser(
       refreshToken: refreshToken,
     });
     if (!userRefreshToken) {
-      res
+      return res
         .status(200)
         .json(status200Ok({ error: false }, "", "Logged out succesfully"));
     }
     await userRefreshToken.remove();
-    res
+    return res
       .status(200)
       .json(status200Ok({ error: false }, "", "Logged out successfully"));
   } catch (error) {
-    res.status(500).json(status500InternalServerError(`${error}`));
+    return res.status(500).json(status500InternalServerError(`${error}`));
   }
 }

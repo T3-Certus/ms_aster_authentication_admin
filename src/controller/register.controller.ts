@@ -10,9 +10,7 @@ import {
   status404NotFound,
   status500InternalServerError,
 } from "../utils/methods/httpResponses";
-import { requestGetParamsValidator } from "../utils/methods";
 import { Request, Response } from "express";
-import { getGenericResponseHelper } from "../utils/methods/responseHelpers";
 import bcrypt from "bcrypt";
 
 const model = UserDataModel;
@@ -27,13 +25,13 @@ export async function registerUser(
   } = req.body;
 
   if(req.body.id_user_rol){
-    res.status(400).json(status400BadRequest("INVALID REQUEST"))
+    return res.status(400).json(status400BadRequest("INVALID REQUEST"))
   } 
 
   try {
     const user = await model.findOne({ where: { user_email: user_email } });
     if (user) {
-      res
+      return res
         .status(400)
         .json(status400BadRequest("User with given email already exists"));
     }
@@ -48,12 +46,12 @@ export async function registerUser(
       id_user_rol: 3,
       user_password: hashPassword,
     });
-    res
+    return res
       .status(201)
       .json(
         status201Created(newUser, "user_data", "A new user has been created")
       );
   } catch (error) {
-    res.status(500).json(status500InternalServerError(`${error}`));
+    return res.status(500).json(status500InternalServerError(`${error}`));
   }
 }

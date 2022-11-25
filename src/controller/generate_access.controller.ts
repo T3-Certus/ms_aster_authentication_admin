@@ -23,7 +23,7 @@ export async function generateAccessToken(
   try {
     const tokenExists = await verifyRefreshToken(refreshToken);
     if (!tokenExists.success) {
-      res.status(400).json(status400BadRequest("Invalid refreshToken"));
+      return res.status(400).json(status400BadRequest("Invalid refreshToken"));
     }
 
     const payload = {
@@ -34,7 +34,7 @@ export async function generateAccessToken(
       expiresIn: "14m",
     });
 
-    res
+    return res
       .status(200)
       .json(
         status200Ok(
@@ -44,6 +44,6 @@ export async function generateAccessToken(
         )
       );
   } catch (error) {
-    res.status(500).json(status500InternalServerError(`${error}`));
+    return res.status(500).json(status500InternalServerError(`${error}`));
   }
 }
