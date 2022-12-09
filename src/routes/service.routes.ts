@@ -13,6 +13,8 @@ router.post("/login", loginUserValidator, loginUser)
 
 router.post("/generate-access", generateAccessToken)
 
+// router.post("/verify",)
+
 router.delete("/logout", logoutUser)
 
 export default router

@@ -4,10 +4,7 @@ import {
 } from "../utils/interfaces/responses";
 import {
   status200Ok,
-  status201Created,
   status400BadRequest,
-  status401Unauthorized,
-  status404NotFound,
   status500InternalServerError,
 } from "../utils/methods/httpResponses";
 import { Request, Response } from "express";
@@ -29,9 +26,10 @@ export async function generateAccessToken(
     const payload = {
       _id: tokenExists.tokenDetails?._id,
       rol: tokenExists.tokenDetails?.rol,
+      email: tokenExists.tokenDetails?.email,
     };
     const accessToken = jwt.sign(payload, config.ACCESS_TOKEN_KEY, {
-      expiresIn: "14m",
+      expiresIn: "15m",
     });
 
     return res

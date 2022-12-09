@@ -23,6 +23,7 @@ export default async function verifyRefreshToken(refreshToken: any) {
       tokenDetails: {
         _id: <number>(<any>tokenDetails)._id,
         rol: <string>(<any>tokenDetails).rol,
+        email: <string>(<any>tokenDetails).email
       },
     };
   } catch (error) {

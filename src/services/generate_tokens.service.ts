@@ -6,12 +6,12 @@ const UserToken = user_token
 
 export default async function generateTokens(user: any) {
   try {
-    const payload = { _id: user._id, rol: user.rol };
+    const payload = { _id: user._id, rol: user.rol, email: user.email };
     const accessToken = jwt.sign(payload, config.ACCESS_TOKEN_KEY, {
-      expiresIn: "14m",
+      expiresIn: "15m",
     });
     const refreshToken = jwt.sign(payload, config.REFRESH_TOKEN_KEY, {
-      expiresIn: "10d",
+      expiresIn: "1d",
     });
     console.log(accessToken)
     console.log(refreshToken)

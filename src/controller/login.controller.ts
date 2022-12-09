@@ -30,7 +30,9 @@ export async function loginUser(req: any, res: Response<GenericServiceResponse |
 
     const userData = {
       _id: data.id_user,
-      rol: data.user_role.dataValues.user_rol_name
+      rol: data.user_role.dataValues.user_rol_name,
+      email: data.user_email,
+      
     }
     console.log(data)
     console.log(userData)
