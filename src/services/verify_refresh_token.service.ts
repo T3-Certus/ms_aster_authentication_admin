@@ -16,7 +16,7 @@ export default async function verifyRefreshToken(refreshToken: any) {
     }
     const tokenDetails = jwt.verify(refreshToken, privateKey);
 
-    console.log(tokenDetails);
+    // console.log(tokenDetails);
     return {
       success: true,
       message: "Valid refresh token",
